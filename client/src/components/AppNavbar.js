@@ -16,7 +16,7 @@ class AppNavbar extends Component {
 	state = {
 		isOpen: false
 	}
-
+	// Sets the isOpen attribute to the opposite value
 	toggle = () => {
 		this.setState({
 			isOpen: !this.state.isOpen
@@ -28,9 +28,9 @@ class AppNavbar extends Component {
 		return (
  
 		<div>
-		<Navbar color="dark" dark expand="sm" className="mb-5">
+		<Navbar color="info" dark expand="sm" className="mb-5">
 		  <Container>
-		   <NavbarBrand href="/">CaseList</NavbarBrand>
+		   <NavbarBrand href="/">ErgoWeb</NavbarBrand>
 		    <NavbarToggler onClick={this.toggle}/>
 		     <Collapse isOpen={this.state.isOpen} navbar>
 		      <Nav className="ml-auto" navbar>
