@@ -1,2 +1,2 @@
 # ergoweb
-Mongo/Express/React/Node
+Mongo/Express/React/Redux/Node
