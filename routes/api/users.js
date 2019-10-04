@@ -44,14 +44,24 @@ router.post('/', (req, res) => {
                 console.log("AAAY!!", hash)
                 newUser.password = hash;
                 newUser.save().then(user => {
-                    res.json({
-                        user: {
+                    
+                    jwt.sign({id: user.id}, 
+                    config.get('jwtSecret'),
+                    {expiresIn: 3600},
+                    (err, token) => {
+                        if (err) throw err; 
+                        res.json({
+                            token: token,
+                            user: {
+    
+                                id: user.id,
+                                name: user.name,
+                                email: user.email 
+                            }
+                        });
 
-                            id: user.id,
-                            name: user.name,
-                            email: user.email 
-                        }
-                    });
+                    })
+
                     });
                 })
             })

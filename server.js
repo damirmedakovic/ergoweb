@@ -5,7 +5,7 @@ const config = require('config')
 
 const cases = require('./routes/api/cases');
 const users = require('./routes/api/users');
-
+const auth = require('./route/api/auth');
 // Initialize application
 const app = express();
 
@@ -19,6 +19,7 @@ mongoose.connect(db, {useNewUrlParser: true, useUnifiedTopology: true}).then(() 
 // Routes definition
 app.use('/api/cases', cases);
 app.use('/api/users', users)
+app.use('/api/auth', auth)
 
 // Use process.env.PORT if deployed on server, otherwise 5000 in development
 const port = process.env.PORT || 5000;

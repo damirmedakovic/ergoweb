@@ -1,5 +1,6 @@
 const express = require('express');
 
+const auth = require('../../middleware/auth')
 
 // Init router object
 const router = express.Router();
@@ -23,7 +24,7 @@ router.get('/', (req, res) => {
 
 // POST /api/cases
 // adds a new case
-router.post('/', (req, res) => {
+router.post('/', auth, (req, res) => {
 
 	const newCase = new Case({
 		name: req.body.name,
@@ -38,7 +39,7 @@ router.post('/', (req, res) => {
 
 // DELETE /api/cases/:id
 // deletes a case
-router.delete ('/:id', (req, res) => {
+router.delete ('/:id', auth, (req, res) => {
 
 	Case.findById(req.params.id)
 	.then(entry => entry.remove().then(() => res.json({Success: `Item with id: ${req.params.id} deleted`})))
