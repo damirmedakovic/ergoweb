@@ -26,7 +26,11 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
 
 	const newCase = new Case({
-		name: req.body.name
+		name: req.body.name,
+		sector: req.body.sector,
+		status: req.body.status, 
+		category: req.body.category,
+		description: req.body.description
 	});
 
 	newCase.save().then(item => res.json(item));

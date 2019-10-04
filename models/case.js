@@ -11,6 +11,7 @@ A case in the database should include:
 - Diagnosis (?) Trenger vi diagnose når vi har kategori?
 - Priority
 - Status
+- Description
 - What week it was assigned
 - Assignee
 - Gerica number (?) Skal ergoterapeutene skrive dette inn?
@@ -23,6 +24,26 @@ const CaseSchema = new Schema({
 		type: String,
 		required: true
 	},
+
+	sector: {
+		type: String,
+		required: true 
+
+	},
+	status: {
+		type: String,
+		required: true 
+	},
+	category: {
+		type: String,
+		required: true 
+	}, 
+	
+	description: {
+		type: String, 
+		required: true 
+	},
+
 	date: {
 		type: Date,
 		default: Date.now

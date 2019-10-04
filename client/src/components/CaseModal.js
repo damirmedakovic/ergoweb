@@ -1,16 +1,5 @@
 import React, {Component} from 'react';
 import { Modal, ModalHeader, ModalBody, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
-/*import {
-    Button,
-    Modal,
-    ModalHeader,
-    ModalBody,
-    Form,
-    FormGroup,
-    Label,
-    Input
-
-} from 'reactstrap';*/
 import { connect } from 'react-redux';
 import { addItem } from '../actions/caseActions';
 import uuid from 'uuid';
@@ -19,7 +8,11 @@ import uuid from 'uuid';
 class ItemModal extends Component {
     state = {
         modal: false,
-        name: ''
+        name: '',
+        sector: '',
+        status: '',
+        category: '',
+        description: ''
 
     }
 
@@ -32,6 +25,10 @@ class ItemModal extends Component {
     onChange = (e) => {
 
         this.setState({[e.target.name]: e.target.value});
+        this.setState({[e.target.sector]: e.target.value});
+        this.setState({[e.target.status]: e.target.value});
+        this.setState({[e.target.category]: e.target.value});
+        this.setState({[e.target.description]: e.target.value});
     }
 
     onSubmit = e => {
@@ -64,17 +61,21 @@ class ItemModal extends Component {
 
             <Form onSubmit={this.onSubmit}>
             <FormGroup>
-              <Label for="exampleEmail">Email</Label>
+              <Label for="exampleEmail">Ergoterapeut</Label>
               <Input
                     type="text"
                     name="name"
                     id="item"
-                    placeholder="Add case item"
+                    placeholder="Navnet på oppdragstakeren"
                     onChange={this.onChange}/>
             </FormGroup>
             <FormGroup>
-              <Label for="examplePassword">Password</Label>
-              <Input type="password" name="password" id="examplePassword" placeholder="password placeholder" />
+              <Label for="exampleSelect">Bydel</Label>
+              <Input type="select" name="select" id="exampleSelect">
+                <option>Midtbyen</option>
+                <option>Lerkendal</option>
+                <option>Byåsen</option>
+              </Input>
             </FormGroup>
             <FormGroup>
               <Label for="exampleSelect">Prioritet</Label>
@@ -86,8 +87,15 @@ class ItemModal extends Component {
               </Input>
             </FormGroup>
             <FormGroup>
+              <Label for="exampleSelect">Aldersgruppe</Label>
+              <Input type="select" name="select" id="exampleSelect">
+                <option>Voksen</option>
+                <option>Barn</option>
+              </Input>
+            </FormGroup>
+            <FormGroup>
               <Label for="exampleText">Beskrivelse</Label>
-              <Input type="textarea" name="text" id="exampleText" />
+              <Input type="textarea" placeholder="Utdyp hva saken handler om"name="text" id="exampleText" />
             </FormGroup>
             <FormGroup tag="fieldset">
               <legend>Kategori</legend>
@@ -110,6 +118,13 @@ class ItemModal extends Component {
                 </Label>
               </FormGroup>
             </FormGroup>
+            <FormGroup>
+              <Label for="exampleSelect">Status</Label>
+              <Input type="select" name="select" id="exampleSelect">
+                <option>Ikke påbegynt</option>
+                <option>Aktiv</option>
+              </Input>
+            </FormGroup>
             <Button
                 color="dark"
                 style={{marginTop: '2rem'}}
@@ -118,8 +133,6 @@ class ItemModal extends Component {
           </ModalBody>
           </Modal>
           </div>
-
-          
 
         );
     }

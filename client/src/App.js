@@ -5,7 +5,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Provider } from 'react-redux';
 import store from './store';
-import ItemModal from './components/ItemModal';
+import ItemModal from './components/CaseModal';
 import { Container} from 'reactstrap';
 
 function App() {
