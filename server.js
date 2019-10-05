@@ -5,7 +5,7 @@ const config = require('config')
 
 const cases = require('./routes/api/cases');
 const users = require('./routes/api/users');
-const auth = require('./route/api/auth');
+const auth = require('./routes/api/auth');
 // Initialize application
 const app = express();
 
