@@ -7,8 +7,14 @@ import { Provider } from 'react-redux';
 import store from './store';
 import ItemModal from './components/CaseModal';
 import { Container} from 'reactstrap';
+import { loadUser } from './actions/authActions';
 
-function App() {
+
+class App extends Component {
+  componentDidMount() {
+    store.dispatch(loadUser());
+  }
+  render() {
   return (
     <Provider store={store}>
     <div className="App">
@@ -20,6 +26,7 @@ function App() {
     </div>
     </Provider>
   );
+}
 }
 
 export default App;
