@@ -3,7 +3,7 @@ import { Modal, ModalHeader, ModalBody, Button, Form, FormGroup, Label, Input, F
 import { connect } from 'react-redux';
 import { addItem } from '../actions/caseActions';
 import uuid from 'uuid';
-
+import PropTypes from 'prop-types';
 
 class ItemModal extends Component {
     state = {
@@ -16,6 +16,10 @@ class ItemModal extends Component {
 
     }
 
+    static propTypes = {
+      isAuthenticated: PropTypes.bool
+    }
+
     toggle = () => {
         this.setState({
             modal: !this.state.modal 
@@ -25,10 +29,7 @@ class ItemModal extends Component {
     onChange = (e) => {
 
         this.setState({[e.target.name]: e.target.value});
-        this.setState({[e.target.sector]: e.target.value});
-        this.setState({[e.target.status]: e.target.value});
-        this.setState({[e.target.category]: e.target.value});
-        this.setState({[e.target.description]: e.target.value});
+        
     }
 
     onSubmit = e => {
@@ -47,10 +48,14 @@ class ItemModal extends Component {
         return(
 
             <div>
-                <Button
+              { this.props.isAuthenticated ? <Button
                 color="dark"
                 style={{marginBottom:"2rem"}}
-                onClick={this.toggle}>Opprett ny</Button>
+                onClick={this.toggle}>Opprett ny</Button> : <h4 className="mb-3 ml-4">
+                  Please log in to manage cases
+                </h4>}
+
+    
             <Modal
                 isOpen={this.state.modal}
                 toggle={this.toggle}>
@@ -140,7 +145,8 @@ class ItemModal extends Component {
 }
 
 const mapStateToProps = state => ({
-    item: state.item
+    item: state.item,
+    isAuthenticated: state.auth.isAuthenticated
 });
 
 export default connect(mapStateToProps, {addItem})(ItemModal);

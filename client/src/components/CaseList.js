@@ -13,6 +13,12 @@ class CaseList extends Component {
 		this.props.getItems();
 	}
 
+	static propTypes = {
+		getItems: PropTypes.func.isRequired,
+		case: PropTypes.object.isRequired,
+		isAuthenticated: PropTypes.bool
+	}
+
 	onDeleteClick = (id) => {
  
 		this.props.deleteItem(id);
@@ -39,11 +45,13 @@ class CaseList extends Component {
 			<tbody>
 				{items.map(({_id, name}) => (
 			  <tr>
-				<th scope="row"><Button 
+				<th scope="row">
+				{this.props.isAuthenticated ? <Button 
 				className="remove-btn" 
 				color="danger" 
 				size="sm" 
-				onClick={this.onDeleteClick.bind(this, _id)}>&times;</Button></th>
+				onClick={this.onDeleteClick.bind(this, _id)}>&times;</Button> : ''}
+				</th>
 				<td>{name}</td>
 				<td>dummy</td>
 				<td>@mdo</td>
@@ -61,15 +69,12 @@ class CaseList extends Component {
 
 }
 
-CaseList.propTypes = {
-	getItems: PropTypes.func.isRequired,
-	case: PropTypes.object.isRequired
-}
 
 
 const mapStateToProps = (state) => ({
 
-	case: state.case
+	case: state.case,
+	isAuthenticated: state.auth.isAuthenticated
 });
 
 
