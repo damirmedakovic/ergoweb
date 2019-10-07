@@ -1,11 +1,11 @@
 
 import React, {Component} from 'react';
-import { NavLink, Modal, ModalHeader, ModalBody, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Alert, NavLink, Modal, ModalHeader, ModalBody, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import { connect } from 'react-redux';
 import uuid from 'uuid';
 import PropTypes from 'prop-types';
 import { register } from '../../actions/authActions';
-
+import { clearErrors} from '../../actions/errorActions';
 class RegisterModal extends Component {
     state = {
         modal: false,
@@ -19,10 +19,32 @@ class RegisterModal extends Component {
     static propTypes = {
         isAuthenticated: PropTypes.bool, 
         error: PropTypes.object.isRequired,
-        register: PropTypes.func.isRequired
+        register: PropTypes.func.isRequired,
+        clearErrors: PropTypes.func.isRequired
     }
 
+    componentDidUpdate(previousProps) {
+        const { error, isAuthenticated } = this.props; 
+        if(err !== previousProps.error) {
+
+            if(error.id === 'REGISTER_FAIL') {
+                this.setState({msg: error.msg.msg})
+
+            } else {
+                this.setState({ msg: null })
+            }
+        }
+
+        if(this.state.modal) {
+            if(isAuthenticated) {
+                this.toggle();
+
+        }
+    }
+}
+
     toggle = () => {
+        this.props.clearErrors();
         this.setState({
             modal: !this.state.modal 
         });
@@ -38,7 +60,17 @@ class RegisterModal extends Component {
 
         e.preventDefault();
 
-        this.toggle();
+        const { name, email, password} = this.state; 
+
+        const newUser = {
+            name: name, 
+            email: email, 
+            password: password 
+        };
+
+        this.props.register(newUser);
+
+
     }
 
     render() {
@@ -57,6 +89,8 @@ class RegisterModal extends Component {
                     Register
                 </ModalHeader>
                 <ModalBody>
+                    {this.state.msg ? ( 
+                    <Alert color="danger">{this.state.msg}</Alert>) : null}
                     <Form onSubmit={this.onSubmit}>
                         <FormGroup>
                             <Label for="item">
@@ -129,5 +163,5 @@ const mapStateToProps = state => ({
     error: state.error
 });
 
-export default connect(mapStateToProps, {register})(RegisterModal);
+export default connect(mapStateToProps, {register, clearErrors})(RegisterModal);
 

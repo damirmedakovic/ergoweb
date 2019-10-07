@@ -56,6 +56,12 @@ export const register = ({name, email, password}) => dispatch => {
         });
 }
 
+const logout = () => {
+    return {
+        type: LOGOUT_SUCCESS
+    };
+};
+
 
 export const tokenConfig = getState => {
 
