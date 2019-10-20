@@ -26,7 +26,7 @@ class LoginModal extends Component {
 
     componentDidUpdate(previousProps) {
         const { error, isAuthenticated } = this.props; 
-        if(err !== previousProps.error) {
+        if(error !== previousProps.error) {
 
             if(error.id === 'LOGIN_FAIL') {
                 this.setState({msg: error.msg.msg})
@@ -102,13 +102,7 @@ class LoginModal extends Component {
                             id="email"
                             placeholder="Email"
                             className="mb-3"
-                            onChange={this.onChange}/>
-                            <Input
-                            type="text"
-                            name="name"
-                            id="item"
-                            placeholder="Add case item"
-                            onChange={this.onChange}/>
+                            onChange={this.onChange}/>    
                             <Label for="item">
                             Password
                             </Label>
@@ -118,12 +112,6 @@ class LoginModal extends Component {
                             id="password"
                             placeholder="Password"
                             className="mb-3"
-                            onChange={this.onChange}/>
-                            <Input
-                            type="text"
-                            name="name"
-                            id="item"
-                            placeholder="Add case item"
                             onChange={this.onChange}/>
                             <Button
                             color="dark"

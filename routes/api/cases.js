@@ -19,7 +19,9 @@ REST-api for cases with GET, POST and DELETE requests
 // gets all cases
 router.get('/', (req, res) => {
 
-	Case.find().sort({ date: -1 }).then(cases => res.json(cases));
+	Case.find()
+	.sort({ date: -1 })
+	.then(cases => res.json(cases));
 });
 
 // POST /api/cases

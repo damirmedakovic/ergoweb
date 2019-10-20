@@ -22,7 +22,7 @@ app.use('/api/users', users)
 app.use('/api/auth', auth)
 
 // Use process.env.PORT if deployed on server, otherwise 5000 in development
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 4500;
 
 // Start server
 app.listen(port, () => console.log(`Server running on port ${port}`));

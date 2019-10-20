@@ -25,7 +25,7 @@ class RegisterModal extends Component {
 
     componentDidUpdate(previousProps) {
         const { error, isAuthenticated } = this.props; 
-        if(err !== previousProps.error) {
+        if(error !== previousProps.error) {
 
             if(error.id === 'REGISTER_FAIL') {
                 this.setState({msg: error.msg.msg})
@@ -103,12 +103,6 @@ class RegisterModal extends Component {
                             placeholder="Name"
                             className="mb-3"
                             onChange={this.onChange}/>
-                            <Input
-                            type="text"
-                            name="name"
-                            id="item"
-                            placeholder="Add case item"
-                            onChange={this.onChange}/>
                             <Label for="item">
                             Email
                             </Label>
@@ -119,12 +113,6 @@ class RegisterModal extends Component {
                             placeholder="Email"
                             className="mb-3"
                             onChange={this.onChange}/>
-                            <Input
-                            type="text"
-                            name="name"
-                            id="item"
-                            placeholder="Add case item"
-                            onChange={this.onChange}/>
                             <Label for="item">
                             Password
                             </Label>
@@ -134,12 +122,6 @@ class RegisterModal extends Component {
                             id="password"
                             placeholder="Password"
                             className="mb-3"
-                            onChange={this.onChange}/>
-                            <Input
-                            type="text"
-                            name="name"
-                            id="item"
-                            placeholder="Add case item"
                             onChange={this.onChange}/>
                             <Button
                             color="dark"

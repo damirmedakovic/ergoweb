@@ -3,7 +3,6 @@ import React, { Component, Fragment } from 'react';
 import { NavLink } from 'reactstrap';
 import { logout } from '../../actions/authActions';
 import { connect } from 'react-redux';
-import NavLink from 'reactstrap/lib/NavLink';
 import PropTypes from 'prop-types';
 
 

@@ -8,13 +8,13 @@ A case in the database should include:
 
 - Category
 - City sector
-- Diagnosis (?) Trenger vi diagnose når vi har kategori?
+- Diagnosis (?) 
 - Priority
 - Status
 - Description
 - What week it was assigned
 - Assignee
-- Gerica number (?) Skal ergoterapeutene skrive dette inn?
+- Gerica number (?) 
 
 
 */

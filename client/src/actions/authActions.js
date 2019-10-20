@@ -1,5 +1,5 @@
 import axios from 'axios';
-import returnErrors from './errorActions';
+import { returnErrors } from './errorActions';
 import {
     USER_LOADING,
     USER_LOADED,
@@ -64,7 +64,7 @@ export const login = ({ email, password}) => dispatch => {
         }
     }
 
-    const body = JSON.stringify({name, email, password})
+    const body = JSON.stringify({ email, password})
 
     axios.post("/api/auth", body, config)
         .then(res => dispatch({
@@ -82,7 +82,7 @@ export const login = ({ email, password}) => dispatch => {
 
 
 
-const logout = () => {
+export const logout = () => {
     return {
         type: LOGOUT_SUCCESS
     };
